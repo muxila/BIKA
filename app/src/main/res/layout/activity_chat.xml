@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.muxiyun.bika.ui.chat.ChatViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <include
+            android:id="@+id/chat_include"
+            layout="@layout/view_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <RelativeLayout
+                android:id="@+id/chat_send_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="10dp"
+                android:elevation="6dp"
+                android:translationZ="6dp"
+                android:background="@drawable/shape_chat_send_bg">
+
+                <LinearLayout
+                    android:id="@+id/chat_send_content_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:background="@drawable/shape_chat_bg">
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chat_send_content_reply"
+                        style="@style/ChipElevated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:layout_marginBottom="4dp"
+                        android:visibility="gone"
+                        android:ellipsize="end"
+                        app:ensureMinTouchTargetSize="false"/>
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chat_send_at"
+                        app:chipSpacing="0dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/chat_send_content_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+
+                <Button
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_below="@id/chat_send_content_input_layout"
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/chat_send_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:enabled="false"
+                    android:text="发送" />
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:layout_below="@id/chat_send_content_input_layout"
+                    android:layout_alignBottom="@id/chat_send_btn"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/chat_send_voice"
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_keyboard_voice"/>
+                    <ImageView
+                        android:id="@+id/chat_send_photo"
+                        android:layout_marginStart="4dp"
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_photo_camera"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <me.jingbin.library.ByRecyclerView
+                android:id="@+id/chat_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/chat_send_layout" />
+
+            <ImageView
+                android:id="@+id/chat_rv_bottom_btn"
+                android:layout_above="@id/chat_send_layout"
+                android:layout_alignParentEnd="true"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:padding="8dp"
+                android:visibility="gone"
+                android:src="@drawable/ic_arrow_down"
+                android:background="@drawable/shape_chat_bg"/>
+
+        </RelativeLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/chat_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
