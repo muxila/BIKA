@@ -12,7 +12,7 @@ interface ApiService {
     fun initGet(): Observable<InitBean>
 
     //检测版本更新
-    @GET("muxila/BIKA/master/Update/updateinfo.json")
+    @GET("muxila/bika/master/Update/updateinfo.json")
     fun updateGet(): Observable<UpdateBean>
 
     //平台 info 不清楚用途
